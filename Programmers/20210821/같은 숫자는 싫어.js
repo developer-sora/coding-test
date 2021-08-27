@@ -1,25 +1,46 @@
 /*문제 설명
-배열 arr가 주어집니다. 배열 arr의 각 원소는 숫자 0부터 9까지로 이루어져 있습니다. 이때, 배열 arr에서 연속적으로 나타나는 숫자는 하나만 남기고 전부 제거하려고 합니다. 단, 제거된 후 남은 수들을 반환할 때는 배열 arr의 원소들의 순서를 유지해야 합니다. 예를 들면,
+어떤 문장의 각 알파벳을 일정한 거리만큼 밀어서 다른 알파벳으로 바꾸는 암호화 방식을 시저 암호라고 합니다. 예를 들어 "AB"는 1만큼 밀면 "BC"가 되고, 3만큼 밀면 "DE"가 됩니다. "z"는 1만큼 밀면 "a"가 됩니다. 문자열 s와 거리 n을 입력받아 s를 n만큼 민 암호문을 만드는 함수, solution을 완성해 보세요.
 
-arr = [1, 1, 3, 3, 0, 1, 1] 이면 [1, 3, 0, 1] 을 return 합니다.
-arr = [4, 4, 4, 3, 3] 이면 [4, 3] 을 return 합니다.
-배열 arr에서 연속적으로 나타나는 숫자는 제거하고 남은 수들을 return 하는 solution 함수를 완성해 주세요.
+제한 조건
+공백은 아무리 밀어도 공백입니다.
+s는 알파벳 소문자, 대문자, 공백으로만 이루어져 있습니다.
+s의 길이는 8000이하입니다.
+n은 1 이상, 25이하인 자연수입니다. */
 
-제한사항
-배열 arr의 크기 : 1,000,000 이하의 자연수
-배열 arr의 원소의 크기 : 0보다 크거나 같고 9보다 작거나 같은 정수 */
-
-function solution(arr) {
-  var answer = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] !== arr[i + 1]) {
-      answer.push(arr[i]);
-    }
+function solution(s, n) {
+  var num = 0;
+  var ans = "";
+  for (let i = 0; i < s.length; i++) {
+    if (s.charCodeAt(i) === 32) {
+      num = 32; // 공백 처리
+    } else if (
+      (s.charCodeAt(i) + n > 90 && s.charCodeAt(i) < 97) || // 대문자일 때 Z 넘어가면 처리
+      s.charCodeAt(i) + n > 122 // 소문자일 때 z 넘어가면 처리
+    ) {
+      num = s.charCodeAt(i) - 26 + n;
+    } else num = s.charCodeAt(i) + n; // 그외 모든 문자 처리
+    ans += String.fromCharCode(num);
   }
-  return answer;
+  return ans;
 }
 
-// 다른 사람 풀이
-function solution(arr) {
-  return arr.filter((val, index) => val != arr[index + 1]);
+// 다른사람 풀이
+
+function solution(s, n) {
+  var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var lower = "abcdefghijklmnopqrstuvwxyz";
+  var answer = "";
+
+  for (var i = 0; i < s.length; i++) {
+    var text = s[i];
+    if (text == " ") {
+      answer += " ";
+      continue;
+    } // 공백처리
+    var textArr = upper.includes(text) ? upper : lower; //
+    var index = textArr.indexOf(text) + n;
+    if (index >= textArr.length) index = index - textArr.length;
+    answer += textArr[index];
+  }
+  return answer;
 }
