@@ -35,5 +35,19 @@ function solution(s) {
    var regexAllCase = new RegExp(tmp, "g") // g = global, 모든 패턴 찾기
    s = s.replace(regexAllCase,i); //replaceAll 안됨.. 정규표현식으로 replace 해야됨
    }
-   return parseInt(s); // 숫자화
+   return Number(s); // 숫자화
+}
+
+// split, join을 이용한 풀이
+
+function solution(s) {
+  let numbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+  var answer = s;
+
+  for(let i=0; i< numbers.length; i++) {
+      let arr = answer.split(numbers[i]);
+      answer = arr.join(i);
+  }
+
+  return Number(answer);
 }
