@@ -72,7 +72,5 @@ function solution(lottos, win_nums){
 
   const maxCount = minCount + zeroCount;
 
-  return [rank[maxCount]], rank[minCount]];
-
-
+  return [rank[maxCount]], rank[minCount];
 }
