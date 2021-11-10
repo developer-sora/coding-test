@@ -14,5 +14,5 @@ for(let i = 0; i < numbers.length-1; i++){
         arr.push(numbers[i]+numbers[j]);
     }
 }
-  return [...new Set(arr.sort((a,b)=>a-b))];
+  return [...new Set(arr.sort((a,b)=>a-b))]; // 중복제거, 오름차순 정렬
 }

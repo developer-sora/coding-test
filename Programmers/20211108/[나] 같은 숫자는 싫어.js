@@ -15,3 +15,5 @@ function solution(arr)
 {
     return arr.filter((v,i)=>v!==arr[i+1]);      // v[i]가 아니라 arr[i]이런식으로 써야...
 }
+
+// 바로 다음 인덱스와 같지 않은 원소만 출력하기, 즉 중복 제거

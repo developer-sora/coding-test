@@ -24,3 +24,7 @@ arr1, arr2는 길이 n인 정수 배열로 주어진다.
 function solution(n, arr1, arr2) {
   return arr1.map((_,i)=>(arr1[i]|arr2[i]).toString(2).padStart(n,'0').replace(/1|0/g, a => +a ? '#' : ' '));
 }
+// | => or, 0이나 1이면 무조건 1로 return 
+// 2진수롭 ㅏ꾸기
+// 앞자리 0으로 채우기
+// /1|0/g => 1이나 0을 a=>+a? a가 0보다 크면, 1이면 #, 0이면 공백으로 치환하기

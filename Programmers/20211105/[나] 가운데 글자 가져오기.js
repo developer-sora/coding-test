@@ -12,7 +12,7 @@ s	return
 */
 
 function solution(s) {
-  let mid = Math.floor(s.length/2);
- return s.length%2===0 ? s[mid-1]+s[mid] : s[mid];
+  let mid = Math.floor(s.length/2); // 버림
+ return s.length%2===0 ? s[mid-1]+s[mid] : s[mid]; // 길이가 짝수면 2개, 홀수면 하나 출력
 }
 

@@ -46,17 +46,17 @@ function solution(dartResult) {
       if(dartResult[i]==='S'){
           arr.push(tmp*1);
       }else if(dartResult[i]==='D'){
-          arr.push(Math.pow(tmp,2));
+          arr.push(Math.pow(tmp,2));  //2제곱
       }else if(dartResult[i]==='T'){
-          arr.push(Math.pow(tmp,3));
+          arr.push(Math.pow(tmp,3)); //3제곱
       }else if(dartResult[i]==='#'){
-          arr[arr.length-1]*=-1;
+          arr[arr.length-1]*=-1; // 가장 최근 게임에 -1 곱하기
       }else if(dartResult[i]==='*'){
-          arr[arr.length-1]*=2;
+          arr[arr.length-1]*=2;  // 가장 최근 게임에 2 곱하고
           if(arr.length>1){
-              arr[arr.length-2]*=2;
+              arr[arr.length-2]*=2; // 전 게임이 있으면 전 게임에도 2배 곱하기
           }
       }
   }
-  return arr.reduce((acc,cur) => acc+cur);
+  return arr.reduce((acc,cur) => acc+cur); //합계 출력
 }

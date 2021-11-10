@@ -28,13 +28,13 @@ function solution(sizes) {
   let tmp = 0;
 
   for(let i = 0; i<sizes.length; i++){
-      if(sizes[i][0]>sizes[i][1]){
+      if(sizes[i][0]>sizes[i][1]){ // 앞자리가 작은 순으로 정렬
           tmp = sizes[i][0];
           sizes[i][0]=sizes[i][1];
           sizes[i][1]=tmp;
       }
-      if(w<sizes[i][0]) w = sizes[i][0];
-      if(h<sizes[i][1]) h = sizes[i][1];
+      if(w<sizes[i][0]) w = sizes[i][0]; // 가장 큰 w 구하기
+      if(h<sizes[i][1]) h = sizes[i][1]; // 가장 큰 h 구하기
   }
 
   return w*h;

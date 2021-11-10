@@ -15,7 +15,7 @@ function solution(price, money, count) {
   for(let i = 1; i<=count; i++){
       sum+=price*i;
   }
-  return sum - money < 0 ? 0 : sum - money ;
+  return sum - money < 0 ? 0 : sum - money ; // 돈이 남으면 0, 부족하면 부족한 돈 return
 }
 
 // 가우스 등차수열
