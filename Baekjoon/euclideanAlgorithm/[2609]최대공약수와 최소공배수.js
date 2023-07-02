@@ -5,8 +5,8 @@ const input = fs
   .split(" ")
   .map(Number);
 
-let greatest;
-let least;
+let GCD;
+let LCM;
 let r = Number.MAX_SAFE_INTEGER;
 let [n, m] = input;
 
@@ -16,8 +16,8 @@ while (r !== 0) {
   m = r;
 }
 
-greatest = n;
-least = (input[0] * input[1]) / n;
+GCD = n;
+LCM = (input[0] * input[1]) / n;
 
-console.log(greatest);
-console.log(least);
+console.log(GCD);
+console.log(LCM);
