@@ -10,10 +10,6 @@ const answer = [];
 for (let i = 0; i < input.length; i++) {
   let ones = 1;
   let count = 1;
-  if (input[i] === 1) {
-    answer.push(1);
-    continue;
-  }
   while (ones % input[i] !== 0) {
     ones = (ones * 10 + 1) % input[i];
     count++;
