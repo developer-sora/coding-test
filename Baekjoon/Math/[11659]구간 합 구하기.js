@@ -7,15 +7,11 @@ const numbers = input[1].split(" ").map(Number);
 
 const answer = [];
 
-function cumulativeSum(arr) {
-  let cumsum = new Array(arr.length + 1).fill(0);
-  for (let i = 0; i < arr.length; i++) {
-    cumsum[i + 1] = cumsum[i] + arr[i];
-  }
-  return cumsum;
-}
+let cumsum = new Array(numbers.length + 1).fill(0);
 
-const cumsum = cumulativeSum(numbers);
+for (let i = 0; i < numbers.length; i++) {
+  cumsum[i + 1] = cumsum[i] + arr[i];
+}
 
 for (let index = 2; index < input.length; index++) {
   let [i, j] = input[index].split(" ").map(Number);

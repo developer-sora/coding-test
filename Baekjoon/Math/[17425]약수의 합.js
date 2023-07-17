@@ -5,39 +5,30 @@ let input = fs
   .split("\r\n")
   .map(Number);
 
-let cnt = input.shift();
+let cnt = Number(input.shift());
 
-let max = Math.max(...input);
+let arr = new Array(1000001).fill(0);
+let memo = new Array(1000001).fill(0);
 
-const memo = new Array(max).fill(0);
+const answer = [];
 
-let sum = 0;
-
-function isPrime(N) {
-  if (N < 2) return false;
-  if (N === 2) return true;
-
-  for (let i = 2; i <= Math.sqrt(N); i++) {
-    if (N % i === 0) return false;
+for (let i = 1; i < 1000001; i++) {
+  for (let j = 1; i * j < 1000001; j++) {
+    arr[i * j] += i;
   }
-  return true;
+  memo[i] = memo[i - 1] + arr[i];
 }
 
-function g(N) {
-  let sum = 0;
-  if (isPrime(N)) {
-    sum += 1 + N;
-  }
-  for (let i = 1; i <= Math.sqrt(N); i++) {
-    if (N % i === 0) {
-    }
-  }
+for (let i = 0; i < input.length; i++) {
+  answer.push(memo[input[i]]);
 }
 
-g(1);
+console.log(answer.join("\n"));
 
-// 1 1 2 1 3 1 2 4 1 5 1 2 3 6 1 7 1 2 4 8 1 3 9 1 2 5 10
-
-// 1 2 3 4 6 12 1 2 7 14 1 2 3 4 6 8 12 24
-
-// 1 4 8 15 21 33 41 56 69 87
+/**
+ * 1  4  8  15 ...
+ *       2  2*5  2*2*2*3  1 2 4 8
+ * 1  1 2  1 3  1 2 4
+ * 1 2 3 4
+ *  4면 15
+ */
