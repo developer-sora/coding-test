@@ -30,20 +30,3 @@ for (let i = 0; i < input.length; i++) {
 }
 
 console.log(answer.join("\n"));
-
-// for (let i = 0; i < input.length; i++) {
-//   let flag = false;
-//   for (let j = 3; j < input[i]; j += 2) {
-//     if (isPrime(j) && isPrime(input[i] - j)) {
-//       flag = true;
-//       answer.push(`${input[i]} = ${j} + ${input[i] - j}`);
-//       break;
-//     }
-//   }
-//   if (!flag) {
-//     answer.push("Goldbach's conjecture is wrong.");
-//   }
-// }
-
-// console.log(answer.join("\n"));
-// 3 17  5 37
