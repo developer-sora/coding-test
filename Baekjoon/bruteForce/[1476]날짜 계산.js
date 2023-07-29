@@ -12,7 +12,7 @@ let year = 1;
 
 while (true) {
   if ((year - E) % 15 === 0 && (year - S) % 28 === 0 && (year - M) % 19 === 0) {
-    console.log(count);
+    console.log(year);
     process.exit();
   } else {
     year++;
