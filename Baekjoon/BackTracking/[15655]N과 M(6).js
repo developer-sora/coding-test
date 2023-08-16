@@ -20,7 +20,7 @@ function dfs(cnt) {
     return;
   }
   for (let i = 0; i < N; i++) {
-    if (output.includes(arr[i])) {
+    if (output[output.length - 1] >= arr[i]) {
       continue;
     }
     output.push(arr[i]);
