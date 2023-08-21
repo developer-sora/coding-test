@@ -5,77 +5,53 @@ let input = fs
   .trim()
   .split("\r\n");
 
-const cnt = Number(input.shift());
+let N = Number(input.shift());
 
-let arr = new Array(cnt);
+let arr = input.map((v) => v.split(""));
 
-let sumArr = [];
+let rowSum = 0;
+let colSum = 0;
 
-for (let i = 0; i < cnt; i++) {
-  arr[i] = input[i].split("");
-}
+let max = Number.MIN_SAFE_INTEGER;
 
-let xy = [
+const xy = [
+  [-1, 0],
   [0, 1],
   [1, 0],
-  [-1, 0],
   [0, -1],
 ];
 
-let copiedArr = arr.map((v) => [...v]);
-let visited = [];
-
-const countSum = (arr) => {
-  let rowAcc = 1;
-  let colAcc = 1;
-  let colMax = 1;
-  let rowMax = 1;
-  for (let i = 0; i < cnt - 1; i++) {
-    rowAcc = 1;
-    colAcc = 1;
-    for (let j = 0; j < cnt - 1; j++) {
-      if (arr[i][j] === arr[i][j + 1]) {
-        rowAcc++;
-      } else {
-        if (rowMax < rowAcc) {
-          rowMax = rowAcc;
-        } else {
-          rowAcc = 1;
-        }
-      }
-      console.log(rowMax);
-      if (arr[j][i] === arr[j + 1][i]) {
-        colAcc++;
-      } else {
-        if (colMax < colAcc) {
-          colMax = colAcc;
-        } else {
-          colAcc = 1;
-        }
-      }
-    }
-  }
-  return Math.max(...[rowMax, colMax]);
-};
-
-for (let i = 0; i < cnt; i++) {
-  for (let j = 0; j < cnt; j++) {
-    for (let k = 0; k < 4; k++) {
+for (let i = 0; i < N; i++) {
+  for (let j = 0; j < N; j++) {
+    for (let k = 0; k < xy.length; k++) {
       if (
         i + xy[k][0] === -1 ||
+        i + xy[k][0] === N ||
         j + xy[k][1] === -1 ||
-        i + xy[k][0] === cnt ||
-        j + xy[k][1] === cnt
+        j + xy[k][1] === N
       ) {
         continue;
       }
-      copiedArr[i][j] = arr[i + xy[k][0]][j + xy[k][1]];
-      copiedArr[i + xy[k][0]][j + xy[k][1]] = arr[i][j];
-      sumArr.push(countSum(copiedArr));
-      copiedArr = arr.map((v) => [...v]);
+      let temp = arr[i][j];
+      arr[i][j] = arr[i + xy[k][0]][j + xy[k][1]];
+      arr[i + xy[k][0]][j + xy[k][1]] = temp;
+      for (let l = 0; l < N; l++) {
+        rowSum =
+          arr[i + xy[k][0]][l] === arr[i + xy[k][0]][j + xy[k][1]]
+            ? (rowSum += 1)
+            : 0;
+        colSum =
+          arr[l][j + xy[k][1]] === arr[i + xy[k][0]][j + xy[k][1]]
+            ? (colSum += 1)
+            : 0;
+        max = max < Math.max(rowSum, colSum) ? Math.max(rowSum, colSum) : max;
+      }
+      rowSum = 0;
+      colSum = 0;
+      arr[i + xy[k][0]][j + xy[k][1]] = arr[i][j];
+      arr[i][j] = temp;
     }
-    visited.push(String(i) + String(j));
   }
 }
 
-console.log(Math.max(...sumArr));
+console.log(max);
