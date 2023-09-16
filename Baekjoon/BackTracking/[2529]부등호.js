@@ -12,30 +12,35 @@ arr = arr[0];
 
 let result = [];
 
-let numArr = [...Array(10).keys()];
+let visited = new Array(10).fill(false);
+
+let answer = [];
 
 function dfs(depth) {
   if (depth === k + 1) {
-    console.log(result);
+    answer.push(result.join(""));
     return;
   }
 
   for (let i = 0; i < 10; i++) {
-    if (result.includes(numArr[i])) {
+    if (
+      visited[i] ||
+      (depth !== 0 &&
+        arr[depth - 1] === "<" &&
+        result[result.length - 1] > i) ||
+      (depth !== 0 && arr[depth - 1] === ">" && result[result.length - 1] < i)
+    ) {
       continue;
     }
-    if (result.length === 0) {
-      result.push(numArr[i]);
-    }
-    if (arr[depth] === ">" && result[result.length - 1] < numArr[i]) {
-      result.pop();
-      result.push(numArr[i]);
-      continue;
-    }
-    if (arr[depth] === "<") result.push(numArr[i]);
+    result.push(i);
+    visited[i] = true;
     dfs(result.length);
+    visited[i] = false;
     result.pop();
   }
 }
 
 dfs(0);
+
+console.log(answer.pop());
+console.log(answer[0]);
