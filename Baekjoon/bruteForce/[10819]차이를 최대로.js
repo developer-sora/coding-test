@@ -41,3 +41,40 @@ function dfs(cnt) {
 dfs(0);
 
 console.log(max);
+
+// 다른 사람 풀이
+
+/*
+const solve = () => {
+  let max = 0;
+  const permutation = [];
+  const selected = Array(N).fill(false);
+  const recursion = () => {
+    if (permutation.length === N) {
+      let sum = 0;
+      for (let i = 0; i < N - 1; i++) {
+        sum += Math.abs(permutation[i] - permutation[i + 1]);
+      }
+      if (max < sum) {
+        max = sum;
+      }
+    } else {
+      for (let i = 0; i < N; i++) {
+        if (selected[i]) {
+          continue;
+        }
+        permutation.push(A[i]);
+        selected[i] = true;
+        recursion();
+        permutation.pop();
+        selected[i] = false;
+      }
+    }
+  };
+  recursion();
+  console.log(max);
+};
+
+solve();
+ 
+ */
