@@ -23,8 +23,6 @@ let x = r;
 let y = c;
 let dir = d;
 
-let temp = 0;
-
 while (true) {
   // 1
   let cnt = 0;

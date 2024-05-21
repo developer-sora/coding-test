@@ -12,6 +12,8 @@ let visited = Array.from({ length: N + 1 }, () => []);
 let answer = Array.from({ length: N + 1 }, () => []);
 let queue = [];
 
+console.log(graph);
+
 for (let [a, b] of input) {
   graph[a].push(b);
   graph[b].push(a);
