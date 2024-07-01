@@ -41,8 +41,8 @@ function solution(dirs) {
 // 다른 사람 풀이
 
 function solution(dirs) {
-  const firstPathMap = new Map();
-  let now = [0, 0];
+  const firstPathMap = new Map(); // map 선언
+  let now = [0, 0]; // 역시 처음 좌표가 0,0이라 0,0으로 선언하는게 좋은 듯
   let moved;
   for (let dir of dirs) {
     moved = move(now, dir);
@@ -56,7 +56,9 @@ function solution(dirs) {
   return firstPathMap.size;
 }
 
+// 좌표 이동 함수
 function move(now, dir) {
+  // 로직을 처리하는 함수를 따로 만드는게 좋은 듯 하다
   switch (dir) {
     case "L":
       return [now[0] - 1, now[1]];
@@ -69,6 +71,9 @@ function move(now, dir) {
   }
 }
 
+// 키 생성 함수
+// go,back을 안 구해도 왼쪽에 작은값, 오른쪽에 큰값을 넣으면 되는군
+// 0,0 -> 0,1 인 경우나 0,1 -> 0,0 인 경우나 0,0,0,1 이렇게 똑같이 나옴
 function generateKey(now, moved) {
   return `${Math.min(now[0], moved[0])},${Math.max(
     now[0],
