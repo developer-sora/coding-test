@@ -18,6 +18,7 @@ class BinarySearchTree {
   constructor() {
     this.root = null;
   }
+  // 노드 삽입
   insert(value) {
     const node = new Node(value);
 
@@ -46,7 +47,7 @@ class BinarySearchTree {
     }
     return this;
   }
-
+  // 노드 찾기
   find(value) {
     if (!this.root) {
       return false;
@@ -69,11 +70,61 @@ class BinarySearchTree {
       }
     }
   }
+  // 너비 우선 탐색
+  BFS() {
+    const result = [];
+    const queue = [];
+    let node = this.root;
+    queue.push(node);
+
+    while (queue.length) {
+      node = queue.shift();
+      result.push(node.value);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    return result;
+  }
+  // DFS 전위 순회
+  DFSPreOrder() {
+    const result = [];
+    function traverse(node) {
+      result.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return result;
+  }
+  // DFS 후위 순회
+  DFSPostOreder() {
+    const result = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      result.push(node.value);
+    }
+    traverse(this.root);
+    return result;
+  }
+  // DFS 중위 순회
+  DFSInOrder() {
+    const result = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      result.push(node.value);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return result;
+  }
 }
 
 const tree = new BinarySearchTree();
 tree.insert(10);
-tree.insert(5);
-tree.insert(7);
-tree.insert(11);
-console.log(tree.find(7));
+tree.insert(6);
+tree.insert(15);
+tree.insert(3);
+tree.insert(8);
+tree.insert(20);
+console.log(tree.DFSInOrder());
